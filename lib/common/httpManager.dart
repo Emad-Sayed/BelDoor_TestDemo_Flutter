@@ -10,6 +10,8 @@ class HttpManager {
 
   }
   static postRequest(String target,Map body) async {
+    print(target);
+    print(body);
     return await post(
         url + target, body: jsonEncode(body),
         headers: headers);
