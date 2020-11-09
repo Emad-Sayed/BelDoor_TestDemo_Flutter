@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:beldoor/models/ticket.dart';
+import 'package:beldoor/pages/ticketCard.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,6 +8,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<Ticket> tickets = [];
+  getTickets(){
+         tickets=[
+        new Ticket(1,1,"Branch 1","Departement 1"),
+        new Ticket(2,2,"Branch 2","Departement 2"),
+        new Ticket(3,3,"Branch 3","Departement 3"),
+           new Ticket(4,4,"Branch 4","Departement 4"),
+           new Ticket(4,4,"Branch 4","Departement 4"),
+      ];
+  }
+  @override
+  void initState() {
+    getTickets();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,11 +31,12 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.grey,
         centerTitle: true,
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Home Here")]),
-      ]),
+      body: ListView(children : tickets.map((ticket) => TicketCard(ticket: ticket)).toList()),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){},
+        icon: Icon(Icons.add),
+        label: Text("Generate Ticket" , style: TextStyle(),),
+      ),
     );
   }
 }

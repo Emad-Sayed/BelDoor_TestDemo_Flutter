@@ -24,7 +24,8 @@ class _LoginState extends State<Login> {
       isLoading = false;
     });
     if (response.statusCode == 200)
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushNamed(context, '/home');
+    // Navigator.pushReplacementNamed(context, '/home');
     else {
       setState(() {
         error = true;
@@ -94,7 +95,7 @@ class _LoginState extends State<Login> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0))),
                         ),
-                        SizedBox(height: 50),
+                        SizedBox(height: 20),
                         Center(
                           child: !isLoading ? FlatButton(
                                   onPressed: () {if (formKey.currentState.validate()) {login();}},
@@ -111,7 +112,7 @@ class _LoginState extends State<Login> {
                                   size: 50.0,
                                 ),
                         ),
-                        SizedBox(height: 50),
+                        SizedBox(height: 20),
                       ],
                     ),
                   ),
