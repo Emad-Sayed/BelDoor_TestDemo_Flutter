@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(children : tickets.map((ticket) => TicketCard(ticket: ticket)).toList()),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){},
+        onPressed: ()=>Navigator.pushNamed(context,'/generate'),
         icon: Icon(Icons.add),
         label: Text("Generate Ticket" , style: TextStyle(),),
       ),

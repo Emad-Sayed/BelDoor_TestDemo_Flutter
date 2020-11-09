@@ -97,13 +97,12 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 20),
                         Center(
-                          child: !isLoading ? FlatButton(
+                          child: !isLoading ? RaisedButton(
                                   onPressed: () {if (formKey.currentState.validate()) {login();}},
                                   child: Text(
                                     "Login",
                                     style: TextStyle(
                                       color: Colors.black,
-                                      backgroundColor: Colors.yellow[300],
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25,
                                     ),
