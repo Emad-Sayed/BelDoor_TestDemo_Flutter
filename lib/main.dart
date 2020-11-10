@@ -10,8 +10,24 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  static void setLocale(BuildContext context,Locale local){
+    _MyAppState state=context.findAncestorStateOfType<_MyAppState>(); // getting App Current Instance
+    state.setLocale(local);
+  }
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale locale;
+
+  void setLocale(Locale locale_){
+    setState(() {
+      locale=locale_;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,9 +38,10 @@ class MyApp extends StatelessWidget {
         '/home':(context)=>Home(),
         '/generate':(context)=>Generate(),
       },
+      locale: locale,
       supportedLocales: [
         Locale('en','US'),
-        Locale('ar','AE'),
+        Locale('ar','SA'),
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,

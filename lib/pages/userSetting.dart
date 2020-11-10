@@ -1,3 +1,6 @@
+import 'package:beldoor/app_localization.dart';
+import 'package:beldoor/common/httpManager.dart';
+import 'package:beldoor/main.dart';
 import 'package:flutter/material.dart';
 
 class UserSetting extends StatefulWidget {
@@ -27,8 +30,12 @@ class _UserSettingState extends State<UserSetting> {
           trailing: Icon(Icons.accessibility_rounded),
         ),
         ListTile(
-          title: Text("Title 1"),
-          trailing: Icon(Icons.accessibility_rounded),
+          title: Text(AppLocalizations.of(context).translate('switchLang')),
+          trailing: Icon(Icons.language),
+          onTap:()=>{
+            Navigator.of(context).pop(),
+            AppLocalizations.isEnglish? MyApp.setLocale(context, Locale('ar','SA')): MyApp.setLocale(context, Locale('en','UA'))
+          }
         ),
         ListTile(
           title: Text("Cancel"),

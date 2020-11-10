@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:beldoor/common/httpManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,8 +9,9 @@ class AppLocalizations {
   final Locale locale;
 
   AppLocalizations(this.locale);
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-  _AppLocalizationsDelegate();
+  static bool isEnglish;
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
   static AppLocalizations of(BuildContext context) {
@@ -18,16 +20,14 @@ class AppLocalizations {
 
   Map<String, String> _localizedStrings;
 
-  Future<bool> load() async {
+  Future load() async {
     // Load the language JSON file from the "lang" folder
     String jsonString =
     await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
 
-    Map<String,dynamic> mappedJson=json.decode(jsonString);
+    Map<String, dynamic> mappedJson = json.decode(jsonString);
 
-    _localizedStrings = mappedJson.map((key,value)=>MapEntry(key, value));
-
-    return true;
+    _localizedStrings = mappedJson.map((key, value) => MapEntry(key, value));
   }
 
   // This method will be called from every widget which needs a localized text
@@ -35,8 +35,8 @@ class AppLocalizations {
     return _localizedStrings[key];
   }
 }
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   // This delegate instance will never change (it doesn't even have fields!)
   // It can provide a constant constructor.
   const _AppLocalizationsDelegate();
@@ -44,6 +44,7 @@ class _AppLocalizationsDelegate
   @override
   bool isSupported(Locale locale) {
     // Include all of your supported language codes here
+    AppLocalizations.isEnglish = locale.languageCode == 'en' ? true : false;
     return ['en', 'ar'].contains(locale.languageCode);
   }
 

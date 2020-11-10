@@ -1,3 +1,4 @@
+import 'package:beldoor/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:beldoor/models/ticket.dart';
 
@@ -19,7 +20,7 @@ class TicketCard extends StatelessWidget {
                ),
                Positioned(
                  top: 40,
-                 left: 45,
+                 left: AppLocalizations.isEnglish ? 45 : 5,
                  width: 50,
                  height: 50,
                  child: Container(
