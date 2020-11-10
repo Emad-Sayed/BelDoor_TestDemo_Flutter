@@ -33,31 +33,29 @@ class _GenerateState extends State<Generate> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(width: 30),
-              Expanded(
-                child: DropdownButton(
-                  icon: Icon(Icons.arrow_circle_down),
-                  style: TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.deepPurpleAccent,
-                  ),
-                  hint: Text(
-                    selectedBranch,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onChanged: (String val) => getDepartements(val),
-                  items: branches.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+              DropdownButton(
+                icon: Icon(Icons.arrow_circle_down),
+                style: TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
                 ),
+                hint: Text(
+                  selectedBranch,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onChanged: (String val) => getDepartements(val),
+                items: branches.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-              SizedBox(width: 40),
-              Expanded(child:DropdownButton(
+              SizedBox(width: 15),
+              DropdownButton(
                 icon: Icon(Icons.arrow_circle_down),
                 style: TextStyle(color: Colors.deepPurple),
                 underline: Container(
@@ -82,7 +80,7 @@ class _GenerateState extends State<Generate> {
                     child: Text(value),
                   );
                 }).toList(),
-              )),
+              ),
                   SizedBox(width: 30),
                 ]),
             SizedBox(height: 30),
