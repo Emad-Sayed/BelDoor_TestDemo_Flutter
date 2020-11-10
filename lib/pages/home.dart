@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:beldoor/models/ticket.dart';
 import 'package:beldoor/pages/ticketCard.dart';
+import 'package:beldoor/pages/userSetting.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -31,6 +32,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.grey,
         centerTitle: true,
       ),
+      drawer:UserSetting(),
       body: ListView(children : tickets.map((ticket) => TicketCard(ticket: ticket)).toList()),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: ()=>Navigator.pushNamed(context,'/generate'),
