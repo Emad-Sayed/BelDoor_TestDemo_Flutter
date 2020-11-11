@@ -1,4 +1,6 @@
 {
+  "missedButton": "Missed",
+  "waitingButton": "Waiting",
   "switchLang": "Arabic",
   "email": "Email",
   "password": "Password"

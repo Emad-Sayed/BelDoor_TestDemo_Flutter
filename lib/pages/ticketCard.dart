@@ -10,8 +10,9 @@ class TicketCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            SizedBox(width: 10),
              Stack(children:<Widget>[
                Container(
                  width: 100,
@@ -27,10 +28,17 @@ class TicketCard extends StatelessWidget {
                     child: Text("1",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                  ),
                ),
-
-               // Center(,
           ],
         ),
-    ]));
+             SizedBox(width: 10,),
+             Expanded(
+                 child: Column(
+               children: [
+                 Text("Cairo"),
+                 Text("Information Technologies"),
+                 Text("Current Number : 10"),
+               ],)
+             )
+          ]));
   }
 }

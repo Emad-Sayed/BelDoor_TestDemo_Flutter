@@ -1,3 +1,4 @@
+import 'package:beldoor/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:beldoor/models/ticket.dart';
 import 'package:beldoor/pages/ticketCard.dart';
@@ -9,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool isWaitingActive = true;
   List<Ticket> tickets = [];
   getTickets(){
          tickets=[
@@ -33,7 +35,22 @@ class _HomeState extends State<Home> {
         centerTitle: true,
       ),
       drawer:UserSetting(),
-      body: ListView(children : tickets.map((ticket) => TicketCard(ticket: ticket)).toList()),
+      body:Column(children: [
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child:Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:[
+                Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('waitingButton')),
+                    color: isWaitingActive?Colors.blue : Colors.white,
+                    onPressed: ()=>setState(()=>isWaitingActive = true))),
+                Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('missedButton')),
+                    color: !isWaitingActive?Colors.blue : Colors.white,
+                    onPressed: ()=>setState(()=>isWaitingActive = false))),
+              ])
+        ),
+        Expanded(child:ListView(children : tickets.map((ticket) => TicketCard(ticket: ticket)).toList())),
+      ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: ()=>Navigator.pushNamed(context,'/generate'),
         icon: Icon(Icons.add),
