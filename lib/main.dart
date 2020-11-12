@@ -3,6 +3,7 @@ import 'package:beldoor/pages/login.dart';
 import 'package:beldoor/pages/loading.dart';
 import 'package:beldoor/pages/home.dart';
 import 'package:beldoor/pages/generate.dart';
+import 'package:beldoor/pages/filter.dart';
 import 'package:beldoor/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         '/loading':(context)=>Loading(),
         '/home':(context)=>Home(),
         '/generate':(context)=>Generate(),
+        '/filter':(context)=>TicketsFilter(),
       },
       locale: locale,
       supportedLocales: [

@@ -26,8 +26,9 @@ class _UserSettingState extends State<UserSetting> {
           ]),
         ),
         ListTile(
-          title: Text("Title 1"),
-          trailing: Icon(Icons.accessibility_rounded),
+          title: Text("History"),
+          trailing: Icon(Icons.history),
+          onTap: ()=> Navigator.pushNamed(context, '/filter'),
         ),
         ListTile(
           title: Text(AppLocalizations.of(context).translate('switchLang')),
