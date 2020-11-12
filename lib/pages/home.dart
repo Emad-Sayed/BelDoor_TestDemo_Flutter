@@ -29,9 +29,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[800],
       appBar: AppBar(
         title: Text("Home Page"),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blueGrey[600],
         centerTitle: true,
       ),
       drawer:UserSetting(),
@@ -42,10 +43,10 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children:[
                 Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('waitingButton')),
-                    color: isWaitingActive?Colors.blue : Colors.white,
+                    color: isWaitingActive?Colors.white : Colors.grey[700] ,
                     onPressed: ()=>setState(()=>isWaitingActive = true))),
                 Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('missedButton')),
-                    color: !isWaitingActive?Colors.blue : Colors.white,
+                    color: !isWaitingActive?Colors.white : Colors.grey[700] ,
                     onPressed: ()=>setState(()=>isWaitingActive = false))),
               ])
         ),
@@ -53,8 +54,9 @@ class _HomeState extends State<Home> {
       ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: ()=>Navigator.pushNamed(context,'/generate'),
+        backgroundColor: Colors.grey[700],
         icon: Icon(Icons.add),
-        label: Text("Generate Ticket" , style: TextStyle(),),
+        label: Text(AppLocalizations.of(context).translate('askTicket')),
       ),
     );
   }

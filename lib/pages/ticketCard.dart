@@ -8,6 +8,7 @@ class TicketCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white60,
       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,

@@ -21,10 +21,11 @@ class _GenerateState extends State<Generate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[800],
       appBar: AppBar(
         title: Text("Generate Ticket"),
         centerTitle: true,
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blueGrey[600],
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +35,7 @@ class _GenerateState extends State<Generate> {
                 children: <Widget>[
                   SizedBox(width: 30),
               DropdownButton(
-                icon: Icon(Icons.arrow_circle_down),
+                icon: Icon(Icons.arrow_circle_down,color: Colors.white54,),
                 style: TextStyle(color: Colors.deepPurple),
                 underline: Container(
                   height: 2,
@@ -43,6 +44,8 @@ class _GenerateState extends State<Generate> {
                 hint: Text(
                   selectedBranch,
                   style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -50,13 +53,14 @@ class _GenerateState extends State<Generate> {
                 items: branches.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value
+                    ),
                   );
                 }).toList(),
               ),
               SizedBox(width: 15),
               DropdownButton(
-                icon: Icon(Icons.arrow_circle_down),
+                icon: Icon(Icons.arrow_circle_down,color: Colors.white54,),
                 style: TextStyle(color: Colors.deepPurple),
                 underline: Container(
                   height: 2,
@@ -65,6 +69,8 @@ class _GenerateState extends State<Generate> {
                 hint: Text(
                   selectedDepartement,
                   style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -89,6 +95,7 @@ class _GenerateState extends State<Generate> {
               children: <Widget>[
                 RaisedButton.icon(
                     onPressed: () {},
+                    color:Colors.blueGrey[300],
                     icon: Icon(Icons.add),
                     label: Text("Generate"))
               ],

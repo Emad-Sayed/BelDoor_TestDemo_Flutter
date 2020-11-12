@@ -3,5 +3,9 @@
   "waitingButton": "Waiting",
   "switchLang": "Arabic",
   "email": "Email",
-  "password": "Password"
+  "password": "Password",
+  "cancel": "Cancel",
+  "askTicket": "Generate Ticket",
+  "history": "History",
+  "logOut": "Logout"
 }

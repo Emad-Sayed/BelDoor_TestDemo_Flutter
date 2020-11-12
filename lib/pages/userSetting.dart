@@ -12,39 +12,50 @@ class _UserSettingState extends State<UserSetting> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+        child: Container(
+          color: Colors.blueGrey[800],
+          child: ListView(
       children: <Widget>[
-        Container(
-          color: Colors.grey[500],
-          height: 100,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children :[
-              Text("Emad"),
-              Text("emadsayedd@gmail.com"),
-              Text("Code 13"),
-          ]),
-        ),
+          Container(
+            color: Colors.blueGrey[600],
+            height: 100,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children :[
+                Text("Emad",style: TextStyle(color: Colors.white54),),
+                Text("emadsayedd@gmail.com",style: TextStyle(color: Colors.white54),),
+                Text("Code 13",style: TextStyle(color: Colors.white54),),
+            ]),
+          ),
+          ListTile(
+            title: Text(AppLocalizations.of(context).translate('history'),style: TextStyle(color: Colors.white70),),
+            trailing: Icon(Icons.history),
+            onTap: ()=> Navigator.pushNamed(context, '/filter'),
+          ),
+          ListTile(
+            title: Text(AppLocalizations.of(context).translate('switchLang'),style:TextStyle(color: Colors.white70),),
+            trailing: Icon(Icons.language),
+            onTap:()=>{
+              Navigator.of(context).pop(),
+              AppLocalizations.isEnglish? MyApp.setLocale(context, Locale('ar','SA')): MyApp.setLocale(context, Locale('en','UA'))
+            }
+          ),
+          ListTile(
+            title: Text(AppLocalizations.of(context).translate('cancel'),style:TextStyle(color: Colors.white70),),
+            trailing: Icon(Icons.cancel),
+            onTap:()=>Navigator.of(context).pop()
+          ),
         ListTile(
-          title: Text("History"),
-          trailing: Icon(Icons.history),
-          onTap: ()=> Navigator.pushNamed(context, '/filter'),
-        ),
-        ListTile(
-          title: Text(AppLocalizations.of(context).translate('switchLang')),
-          trailing: Icon(Icons.language),
-          onTap:()=>{
-            Navigator.of(context).pop(),
-            AppLocalizations.isEnglish? MyApp.setLocale(context, Locale('ar','SA')): MyApp.setLocale(context, Locale('en','UA'))
-          }
-        ),
-        ListTile(
-          title: Text("Cancel"),
-          trailing: Icon(Icons.cancel),
-          onTap:()=>Navigator.of(context).pop()
+            title: Text(AppLocalizations.of(context).translate('logOut'),style:TextStyle(color: Colors.white70),),
+            trailing: Icon(Icons.exit_to_app),
+            onTap:()=>{
+              Navigator.of(context).pop(),
+              Navigator.pushReplacementNamed(context, '/')
+            }
         ),
       ]
-      )
+      ),
+        )
     );
   }
 }

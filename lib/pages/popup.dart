@@ -26,7 +26,7 @@ class _CustomPopUp extends State<CustomPopUp> {
                 children: [
               Expanded(
                 child: ListView(children : widget.values.keys.map((val) => CheckboxListTile(
-                  title: Text(val,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                  title: Text(val,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                   value: widget.values[val],
                   controlAffinity: ListTileControlAffinity.platform,
                   onChanged: (asd)=>setState((){widget.values[val]=!widget.values[val];})//set the state,
@@ -36,9 +36,9 @@ class _CustomPopUp extends State<CustomPopUp> {
                 child: Row(
                   children: [
                     //ListView With Text and Check Box
-                  Expanded(child: RaisedButton(child: Text("Save"),onPressed: ()=>getSelectedData()),flex: 3,),
+                  Expanded(child: RaisedButton(child: Text("Save"),color: Colors.white60,onPressed: ()=>getSelectedData()),flex: 3,),
                   Expanded(child: SizedBox(),flex: 1,),
-                  Expanded(child: RaisedButton(child: Text("Cancel"),onPressed: ()=>Navigator.of(context).pop()),flex: 3,)
+                  Expanded(child: RaisedButton(child: Text("Cancel"),color: Colors.white60,onPressed: ()=>Navigator.of(context).pop()),flex: 3,)
                 ],), flex: 2,
               ),
               ],

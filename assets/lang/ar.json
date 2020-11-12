@@ -3,5 +3,9 @@
   "waitingButton": "انتظار",
   "switchLang": "الانجليزية",
   "email": "البريد الالكتروني",
-  "password": "كلمة المرور"
+  "password": "كلمة المرور",
+  "cancel": "الغاء",
+  "askTicket": "الحصول على تذكرة",
+  "history": "السابق",
+  "logOut": "تسجيل خروج"
 }

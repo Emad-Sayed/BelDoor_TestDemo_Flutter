@@ -23,9 +23,10 @@ class _TicketsFilterState extends State<TicketsFilter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blueGrey[800],
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey[600],
           title: Text("Filtration Page"),
-          backgroundColor: Colors.grey,
           centerTitle: true,
         ),
         body:Padding(
@@ -35,10 +36,10 @@ class _TicketsFilterState extends State<TicketsFilter> {
           children: [
           Row(
             children: [
-            Expanded(child: Text("Select Branch"),flex: 1,),
+              Expanded(child: Text("Select Branch",style: TextStyle(color: Colors.white70),),flex: 1,),
             Expanded(
               child: RaisedButton(
-                child: Text(drawData()),
+                child: Text(drawData(),style: TextStyle(backgroundColor:Colors.white70),),
                 onPressed: ()=>showDialog(context: context,builder: (BuildContext build){
                   return Center(child: CustomPopUp(values:data,onDataReady:(data)=>setData(data)));}),
               ),flex: 2,
@@ -47,10 +48,10 @@ class _TicketsFilterState extends State<TicketsFilter> {
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: Text("Select Branch"),flex: 1,),
+                Expanded(child: Text("Select Branch",style: TextStyle(color: Colors.white70),),flex: 1,),
                 Expanded(
                   child: RaisedButton(
-                    child: Text(drawData()),
+                    child: Text(drawData(),style: TextStyle(backgroundColor:Colors.white70),),
                     onPressed: ()=>showDialog(context: context,builder: (BuildContext build){
                       return Center(child: CustomPopUp(values:data,onDataReady:(data)=>setData(data)));}),
                   ),flex: 2,
@@ -59,10 +60,10 @@ class _TicketsFilterState extends State<TicketsFilter> {
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: Text("Select Branch"),flex: 1,),
+                Expanded(child: Text("Select Branch",style: TextStyle(color: Colors.white70),),flex: 1,),
                 Expanded(
                   child: RaisedButton(
-                    child: Text(drawData()),
+                    child: Text(drawData(),style: TextStyle(backgroundColor:Colors.white70),),
                     onPressed: ()=>showDialog(context: context,builder: (BuildContext build){
                       return Center(child: CustomPopUp(values:data,onDataReady:(data)=>setData(data)));}),
                   ),flex: 2,
