@@ -1,33 +1,17 @@
 import 'package:beldoor/app_localization.dart';
+import 'package:beldoor/models/Home/ticketsList.dart';
 import 'package:flutter/material.dart';
-import 'package:beldoor/models/ticket.dart';
 import 'package:beldoor/pages/ticketCard.dart';
 import 'package:beldoor/pages/userSetting.dart';
+import 'package:provider/provider.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
 
-class _HomeState extends State<Home> {
+class Home extends StatelessWidget {
   bool isWaitingActive = true;
-  List<Ticket> tickets = [];
-  getTickets(){
-         tickets=[
-        new Ticket(1,1,"Branch 1","Departement 1"),
-        new Ticket(2,2,"Branch 2","Departement 2"),
-        new Ticket(3,3,"Branch 3","Departement 3"),
-        new Ticket(4,4,"Branch 4","Departement 4"),
-        new Ticket(4,4,"Branch 4","Departement 4"),
-      ];
-  }
-  @override
-  void initState() {
-    getTickets();
-    super.initState();
-  }
+  TicketsListModel ticketsModel;
   @override
   Widget build(BuildContext context) {
+    ticketsModel = Provider.of<TicketsListModel>(context);
     return Scaffold(
       backgroundColor: Colors.blueGrey[800],
       appBar: AppBar(
@@ -43,14 +27,16 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children:[
                 Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('waitingButton')),
-                    color: isWaitingActive?Colors.white : Colors.grey[700] ,
-                    onPressed: ()=>setState(()=>isWaitingActive = true))),
+                    color: ticketsModel.isWaitingList?Colors.white : Colors.grey[700] ,
+                    onPressed: ()=>this.ticketsModel.changeListType()
+                )),
                 Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('missedButton')),
-                    color: !isWaitingActive?Colors.white : Colors.grey[700] ,
-                    onPressed: ()=>setState(()=>isWaitingActive = false))),
+                    color: !ticketsModel.isWaitingList?Colors.white : Colors.grey[700] ,
+                     onPressed: ()=>this.ticketsModel.changeListType()
+                )),
               ])
         ),
-        Expanded(child:ListView(children : tickets.map((ticket) => TicketCard(ticket: ticket)).toList())),
+        Expanded(child:ListView(children : ticketsModel.ticketsList.map((ticket) => TicketCard(ticket: ticket)).toList())),
       ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: ()=>Navigator.pushNamed(context,'/generate'),

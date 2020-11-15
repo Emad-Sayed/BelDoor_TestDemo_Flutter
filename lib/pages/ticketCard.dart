@@ -1,6 +1,6 @@
 import 'package:beldoor/app_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:beldoor/models/ticket.dart';
+import 'file:///E:/Emad/Flutter/beldoor/lib/models/Home/ticket.dart';
 
 class TicketCard extends StatelessWidget {
   final Ticket ticket;

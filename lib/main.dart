@@ -1,3 +1,6 @@
+import 'package:beldoor/models/Generate/branches.dart';
+import 'package:beldoor/models/Generate/departements.dart';
+import 'package:beldoor/models/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:beldoor/pages/login.dart';
 import 'package:beldoor/pages/loading.dart';
@@ -6,6 +9,9 @@ import 'package:beldoor/pages/generate.dart';
 import 'package:beldoor/pages/filter.dart';
 import 'package:beldoor/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+
+import 'models/Home/ticketsList.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,34 +37,42 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/':(context)=>Login(),
-        '/loading':(context)=>Loading(),
-        '/home':(context)=>Home(),
-        '/generate':(context)=>Generate(),
-        '/filter':(context)=>TicketsFilter(),
-      },
-      locale: locale,
-      supportedLocales: [
-        Locale('en','US'),
-        Locale('ar','SA'),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TicketsListModel()),
+        ChangeNotifierProvider(create: (_) => LoginModel()),
+        ChangeNotifierProvider(create: (_) => BranchesListModel()),
+        ChangeNotifierProvider(create: (_) => DepartmentsListModel()),
       ],
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      localeResolutionCallback: (deviceLocal,supportedLocales){
-        for(var supportedLocal in supportedLocales){
-          if(supportedLocal.languageCode==deviceLocal.languageCode&&
-          supportedLocal.countryCode==deviceLocal.countryCode){
-            return supportedLocal;
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/':(context)=>Login(),
+          '/loading':(context)=>Loading(),
+          '/home':(context)=>Home(),
+          '/generate':(context)=>Generate(),
+          '/filter':(context)=>TicketsFilter(),
+        },
+        locale: locale,
+        supportedLocales: [
+          Locale('en','US'),
+          Locale('ar','SA'),
+        ],
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        localeResolutionCallback: (deviceLocal,supportedLocales){
+          for(var supportedLocal in supportedLocales){
+            if(supportedLocal.languageCode==deviceLocal.languageCode&&
+            supportedLocal.countryCode==deviceLocal.countryCode){
+              return supportedLocal;
+            }
           }
-        }
-        return supportedLocales.first;
-      },
+          return supportedLocales.first;
+        },
+      ),
     );
   }
 }

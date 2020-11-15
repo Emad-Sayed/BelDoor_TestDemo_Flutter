@@ -1,25 +1,21 @@
+import 'package:beldoor/models/Generate/branches.dart';
+import 'package:beldoor/models/Generate/departements.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Generate extends StatefulWidget {
-  @override
-  _GenerateState createState() => _GenerateState();
-}
 
-class _GenerateState extends State<Generate> {
-  String selectedBranch = "Select Branch";
-  String selectedDepartement = "Select Departement";
-  List<String> branches = ['B1', 'B2', 'B3', 'B4'];
-  List<String> departements = [];
+class Generate extends StatelessWidget {
+  BranchesListModel branches;
+  DepartmentsListModel departments;
 
-  getDepartements(String branchName) {
-    setState(() {
-      selectedBranch = branchName;
-      departements = ['D1', 'D2', 'D3', 'D4'];
-    });
+getDepartments(branch){
+    branches.setSelectedBranch(branch);
+    departments.getDepartments(branch);
   }
-
   @override
   Widget build(BuildContext context) {
+    branches = Provider.of<BranchesListModel>(context);
+    departments = Provider.of<DepartmentsListModel>(context);
     return Scaffold(
       backgroundColor: Colors.blueGrey[800],
       appBar: AppBar(
@@ -31,65 +27,68 @@ class _GenerateState extends State<Generate> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(width: 30),
-              DropdownButton(
-                icon: Icon(Icons.arrow_circle_down,color: Colors.white54,),
-                style: TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
-                ),
-                hint: Text(
-                  selectedBranch,
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
+              children: <Widget>[
+              Expanded(child: SizedBox(),flex: 1,),
+              Expanded(
+                child: DropdownButton(
+                  icon: Icon(Icons.arrow_circle_down,color: Colors.white54,),
+                  style: TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
                   ),
-                ),
-                onChanged: (String val) => getDepartements(val),
-                items: branches.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value
+                  hint: Text(
+                    branches.selectedBranch,
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                }).toList(),
-              ),
-              SizedBox(width: 15),
-              DropdownButton(
-                icon: Icon(Icons.arrow_circle_down,color: Colors.white54,),
-                style: TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
-                ),
-                hint: Text(
-                  selectedDepartement,
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                onChanged: (String val) {
-                  setState(() {
-                    selectedDepartement = val;
-                  });
-                },
-                items:
-                    departements.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                  onChanged: (String val) => getDepartments(val),
+                  items: branches.branches.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value
+                      ),
+                    );
+                  }).toList(),
+                ),flex: 2,
               ),
-                  SizedBox(width: 30),
-                ]),
-            SizedBox(height: 30),
+              Expanded(child: SizedBox(),flex: 1,),
+              ]),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(child: SizedBox(),flex:1),
+                Expanded(child: DropdownButton(
+                  icon: Icon(Icons.arrow_circle_down,color: Colors.white54,),
+                  style: TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  hint: Text(
+                    departments.selectedDepartment,
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onChanged: (String val) => departments.setSelectedDepartement(val),
+                  items:
+                  departments.departments.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),flex: 2,),
+                Expanded(child: SizedBox(),flex:1),
+              ],
+            ),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
