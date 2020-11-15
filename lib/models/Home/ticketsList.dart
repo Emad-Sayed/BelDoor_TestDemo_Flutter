@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 class TicketsListModel extends ChangeNotifier{
   List<Ticket> ticketsList = [];
   bool isWaitingList = true;
-  TicketsListModel(){getTickets();}
-  getTickets() async{
+  bool isLoading ;
+  TicketsListModel(){getTickets(1);}
+  getTickets(int stateId) async{
+    setLoading(true);
     await Future.delayed(Duration(seconds: 2),(){
       ticketsList = [
         new Ticket(1,1,"Branch 1","Departement 1"),
@@ -15,11 +17,15 @@ class TicketsListModel extends ChangeNotifier{
         new Ticket(4,4,"Branch 4","Departement 4"),
       ];
     });
+    setLoading(false);
+  }
+  setLoading(val) {
+    isLoading = val;
     notifyListeners();
   }
-  changeListType(){
+  changeListType(stateId){
     isWaitingList=!isWaitingList;
-    notifyListeners();
+    getTickets(stateId);
   }
   addTicket(ticket){
     ticketsList.add(ticket);
