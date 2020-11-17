@@ -88,6 +88,10 @@ class Login extends StatelessWidget {
                           SizedBox(height: 20),
                           Center(
                             child: !loginModel.isLoading ? RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: BorderSide(color: Colors.blueGrey)
+                                ),
                                     onPressed: () {if (formKey.currentState.validate()) {login(context);}},
                                 color:Colors.blueGrey[300],
                                     child: Text(

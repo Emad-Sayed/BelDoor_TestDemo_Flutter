@@ -30,7 +30,10 @@ class _UserSettingState extends State<UserSetting> {
           ListTile(
             title: Text(AppLocalizations.of(context).translate('history'),style: TextStyle(color: Colors.white70),),
             trailing: Icon(Icons.history),
-            onTap: ()=> Navigator.pushNamed(context, '/filter'),
+            onTap: ()=> {
+              Navigator.of(context).pop(),
+              Navigator.pushNamed(context, '/filter'),
+            }
           ),
           ListTile(
             title: Text(AppLocalizations.of(context).translate('switchLang'),style:TextStyle(color: Colors.white70),),

@@ -69,6 +69,18 @@ class _TicketsFilterState extends State<TicketsFilter> {
                   ),flex: 2,
                 )
               ],),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton(onPressed: ()=>{},child: Text("Filter"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.blueGrey)
+                ),
+              )
+            ],
+          )
           ],
     ),
         ));
