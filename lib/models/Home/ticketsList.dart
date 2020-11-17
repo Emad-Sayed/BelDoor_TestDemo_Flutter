@@ -1,13 +1,21 @@
-import 'file:///E:/Emad/Flutter/beldoor/lib/models/Home/ticket.dart';
+import 'dart:convert';
+
+import 'package:beldoor/models/Home/ticket.dart';
+import 'package:beldoor/common/httpManager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart';
 
 class TicketsListModel extends ChangeNotifier{
   List<Ticket> ticketsList = [];
   bool isWaitingList = true;
   bool isLoading ;
-  TicketsListModel(){getTickets(1);}
-  getTickets(int stateId) async{
+  TicketsListModel(){getTickets({'statusIds':['1']});}
+  getTickets(query) async{
     setLoading(true);
+    // Response response = await HttpManager.getRequest('Ticket/VisitorDailyTickets',query);
+    // ticketsList= (jsonDecode(response.body)['data'] as List)
+    //     .map((e) => Ticket(e['id'], e['currentNumber'], e['branchNameEN'], e['departementNameEN']))
+    //     .toList();
     await Future.delayed(Duration(seconds: 2),(){
       ticketsList = [
         new Ticket(1,1,"Branch 1","Departement 1"),
@@ -17,15 +25,12 @@ class TicketsListModel extends ChangeNotifier{
         new Ticket(4,4,"Branch 4","Departement 4"),
       ];
     });
+    print(ticketsList);
     setLoading(false);
   }
   setLoading(val) {
     isLoading = val;
     notifyListeners();
-  }
-  changeListType(stateId){
-    isWaitingList=!isWaitingList;
-    getTickets(stateId);
   }
   addTicket(ticket){
     ticketsList.add(ticket);

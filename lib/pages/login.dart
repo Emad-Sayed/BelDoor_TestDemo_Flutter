@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:beldoor/app_localization.dart';
+import 'package:beldoor/common/httpManager.dart';
 import 'package:beldoor/models/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,6 +19,7 @@ class Login extends StatelessWidget {
     Response response = await loginModel.login(formData);
     if(response.statusCode == 200){
       loginModel.setErrorMessage(false);
+      HttpManager.setToken(jsonDecode(response.body)['token']);
       Navigator.pushReplacementNamed(context, '/home');
     }
     else

@@ -29,11 +29,11 @@ class Home extends StatelessWidget {
               children:[
                 Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('waitingButton')),
                     color: ticketsModel.isWaitingList?Colors.white : Colors.grey[700] ,
-                    onPressed: ()=>this.ticketsModel.changeListType(1)
+                    onPressed: ()=>this.ticketsModel.getTickets({'statusIds':['1']})
                 )),
                 Expanded(child:RaisedButton(child: Text(AppLocalizations.of(context).translate('missedButton')),
                     color: !ticketsModel.isWaitingList?Colors.white : Colors.grey[700] ,
-                     onPressed: ()=>this.ticketsModel.changeListType(2)
+                    onPressed: ()=>this.ticketsModel.getTickets({'statusIds':['3']})
                 )),
               ])
         ),
